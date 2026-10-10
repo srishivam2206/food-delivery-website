@@ -106,3 +106,18 @@ Open http://localhost:5173 in your browser.
 - Connect a real payment gateway such as Razorpay in test mode
 - Add automated tests for the API routes
 - Deploy the frontend to Vercel and the backend to Render
+
+## Deploying it online (free tiers)
+
+1. **Database:** create a free cluster on [MongoDB Atlas](https://www.mongodb.com/atlas). Add a database user, allow network access from `0.0.0.0/0`, and copy the connection string.
+2. **Backend on [Render](https://render.com):** New Web Service, connect this repo, then set:
+   - Root Directory: `server`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Environment variables: `MONGO_URI`, `JWT_SECRET`, and `CLIENT_URL` (your Vercel address from the next step, without a trailing `/`)
+
+   On the first start with an empty database, the sample menu is added automatically.
+3. **Frontend on [Vercel](https://vercel.com):** Add New Project, import this repo, set Root Directory to `client`, and add the environment variable `VITE_API_URL` with the value `https://YOUR-RENDER-SERVICE.onrender.com/api`.
+4. After Vercel gives you the site address, put it in `CLIENT_URL` on Render and redeploy the backend.
+
+Render's free plan sleeps after a while, so the first request can take around a minute.
