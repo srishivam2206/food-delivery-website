@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Secrets. Never upload these.
+.env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# Logs and system files
+*.log
+.DS_Store
+.vscode/
